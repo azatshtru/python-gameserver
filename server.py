@@ -14,16 +14,15 @@ def send_data (sender, data):
         for c in client_list:
             if c == sender:
                 continue
-            #sendata = bytearray(msg, 'utf8')
             stream.sendall(data)
 
 with s:
+    s.bind((host, port))
     while len(client_list) < max_players:
-        s.bind((host, port))
         s.listen()
         stream, address = s.accept()
-        client = client.ClientHandler(stream, address)
-        client_list.append(client)
+        _client = client.ClientHandler(stream, address)
+        client_list.append(_client)
         print('connection recieved from', address)
 
             

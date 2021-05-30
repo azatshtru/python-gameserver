@@ -5,7 +5,7 @@ import threading
 host = '0.0.0.0'
 port = 5407
 
-max_players = 4
+max_players = 2
 client_list = []
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -33,7 +33,7 @@ class ClientHandler (object):
                 if not data:
                     break
                 send_data(self, data)
-                time.sleep(0.25)
+                time.sleep(0.03)
 
 with s:
     s.bind((host, port))
@@ -43,5 +43,5 @@ with s:
         _client = ClientHandler(stream, address)
         client_list.append(_client)
         print('connection recieved from', address)
-
+    print("Room full! Create new room for more players.")
             

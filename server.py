@@ -50,11 +50,14 @@ class ClientHandler (object):
                 time.sleep(0.01)
 
     def recieve_data_udp (self):
-        while True:
-            data, addr = udps.recvfrom(1024)
-            self.udpaddr = addr
-            udpsend(self, data)
-            time.sleep(0.01)
+        try:
+            while True:
+                data, addr = udps.recvfrom(1024)
+                self.udpaddr = addr
+                udpsend(self, data)
+                time.sleep(0.01)
+        except:
+            self.recieve_data_udp()
 
 with s:
     s.bind((host, port))

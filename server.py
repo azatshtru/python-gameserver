@@ -55,7 +55,7 @@ class ClientHandler (object):
                 data, addr = udps.recvfrom(1024)
                 self.udpaddr = addr
                 udpsend(self, data)
-                time.sleep(0.01)
+                #time.sleep(0.01)
         except:
             self.recieve_data_udp()
 

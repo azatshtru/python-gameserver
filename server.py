@@ -9,6 +9,7 @@ udp_port = 25011
 
 max_players = 2
 client_list = []
+server_int = 0
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -64,6 +65,11 @@ with s:
     while len(client_list) < max_players:
         s.listen()
         stream, address = s.accept()
+
+        server_int_bytes = bytearray('server'+str(server_int), 'utf8')
+        stream.sendall(server_int_bytes)
+        server_int += 1
+
         _client = ClientHandler(stream, address)
         client_list.append(_client)
         print('connection recieved from', address)

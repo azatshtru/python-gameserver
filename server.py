@@ -12,6 +12,7 @@ client_list = []
 server_int = 0
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 udps = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 udps.bind((host, udp_port))
